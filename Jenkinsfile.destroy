@@ -21,7 +21,7 @@ pipeline {
                     sh """
                     terraform init -reconfigure \
                     -backend-config="bucket=terraform-backend-bucket-s3-state" \
-                    -backend-config="key=terraform-state-lock" \
+                    -backend-config="key=auto-deploy/terraform.tfstate" \
                     -backend-config="region=${REGION}"
                     """
                 }
