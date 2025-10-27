@@ -1,16 +1,5 @@
 pipeline {
     agent any
-    environment {
-        AWS_ACCESS_KEY_ID     = credentials('aws-access-key-id')
-        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
-    }
-    stages {
-        stage('Destroy Infra') {
-            steps {
-                dir('terraform') { // or your TF directory
-                    sh 'terraform init -backend-config="bucket=your-s3-bucket" -backend-config="key=terraform/state.tfstate" -backend-config="region=ap-south-1"'
-pipeline {
-    agent any
 
     environment {
         AWS_ACCESS_KEY_ID     = credentials('aws-access-key-id')
