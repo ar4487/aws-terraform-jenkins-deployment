@@ -4,7 +4,7 @@ pipeline {
     environment {
         AWS_ACCESS_KEY_ID     = credentials('aws-access-key-id')
         AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
-        REGION                = "ap-south-1"
+        REGION                = "us-east-1"
         TF_DIR                = "terraform"
     }
 
@@ -20,8 +20,8 @@ pipeline {
                 dir("${TF_DIR}") {
                     sh """
                     terraform init -reconfigure \
-                    -backend-config="bucket=your-s3-bucket" \
-                    -backend-config="key=terraform/state.tfstate" \
+                    -backend-config="bucket=terraform-backend-bucket-s3-state" \
+                    -backend-config="key=terraform-state-lock" \
                     -backend-config="region=${REGION}"
                     """
                 }
